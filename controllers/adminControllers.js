@@ -1,4 +1,4 @@
-// const Producto = require('../model/productos-model');
+const Admin = require('../model/admin-model');
 
 // const crearProducto = async (req, res) => {
 // 	const { nombre, descripcion, precio } = req.body;
@@ -37,23 +37,24 @@
 // 	}
 // };
 
-// const mostrarProducto = async (req, res) => {
+ const mostrarAdmin = async (req, res) => {
+    
+	const {email} = req.body;
 	
-	
-//     try {
-// 		const producto = await Producto.find();
-// 		res.status(200).json({
-// 			msg: 'Productos enviados',
-// 			producto,
-// 		});
-// 	} catch (error) {
-// 		res.status(500).json({
-// 			msg: 'Por favor contactarse con el administrador',
-// 		});
-// 	}
-// };
+     try {
+ 		const admin = await Admin.findOne({email});
+ 		res.status(200).json({
+ 			msg: 'admin encontrado',
+ 			admin,
+ 		});
+ 	} catch (error) {
+ 		res.status(500).json({
+ 			msg: 'Por favor contactarse con el administrador',
+ 		});
+ 	}
+ };
 
-// module.exports = {
+module.exports = {
 // 	crearProducto,
-//     mostrarProducto,
-// };
+     mostrarAdmin,
+ };

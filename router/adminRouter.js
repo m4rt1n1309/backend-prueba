@@ -1,18 +1,18 @@
-// const express = require ('express');
+ const express = require ('express');
 
-// const routerAdmin = express.Router();
+ const routerAdmin = express.Router();
+ const { validarJWT } = require('../middleware/validarJWT');
+ const {
 
-// const {
+    mostrarAdmin,
 
-//     mostrarProducto,
-//     crearProducto,
-// } = require('../controllers/adminControllers');
+ } = require('../controllers/adminControllers');
 
-// routerAdmin.get ("/tablaproductos", mostrarProducto);
+ routerAdmin.post ('/datosadmin',validarJWT, mostrarAdmin);
 
 // routerAdmin.post ("/crearproducto", crearProducto);
 
 
 
 
-// module.exports = routerAdmin;
+ module.exports = routerAdmin;
