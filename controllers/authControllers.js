@@ -24,7 +24,7 @@ const crearAdmin = async (req, res) => {
 		//si el correo se encontro lo rechazamos
 		if (admin) {
 			return res.status(400).json({
-				msg: 'Un Usuario ya existe con este correo',
+				msg: 'Un Administrador ya existe con este correo',
 			});
 		}
 

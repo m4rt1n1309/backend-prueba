@@ -14,7 +14,7 @@ routerAuth.post('/login', loginAdmin);
 routerAuth.post(
 	'/registro',
 	[check('email', 'No es un Email valido').not().isEmpty().isEmail(), validarCampos],
-	crearAdmin);
+	crearAdmin)
 
 
 
