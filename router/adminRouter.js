@@ -6,12 +6,16 @@
 
     mostrarAdmin,
     crearAlumno,
+    listaAlumnos,
 
  } = require('../controllers/adminControllers');
 
  routerAdmin.post ('/datosadmin',validarJWT, mostrarAdmin);
 
  routerAdmin.post ('/crearalumno',validarJWT, crearAlumno);
+
+ routerAdmin.get ('/listaalumnos',validarJWT, listaAlumnos);
+
 
 
 

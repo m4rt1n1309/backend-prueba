@@ -44,6 +44,15 @@ const Alumno = require('../model/alumnos-model');
  	}
  };
 
+ const listaAlumnos = async (req, res) => {
+	const listaAlumnos = await Alumno.find();
+
+	res.status(200).json({
+		msg: 'lista de alumnos enviada',
+		listaAlumnos,
+	});
+};
+
  const mostrarAdmin = async (req, res) => {
     
 	const {email} = req.body;
@@ -64,4 +73,5 @@ const Alumno = require('../model/alumnos-model');
 module.exports = {
  	 crearAlumno,
      mostrarAdmin,
+	 listaAlumnos,
  };
