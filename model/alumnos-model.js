@@ -11,20 +11,54 @@ const alumnoSchema = Schema({
 		required: true,
 	},
 
-	añoCurso: {
-		type: Number,
+	curso: {
+		type: String,
 		required: true,
 	},
 
-	expediente: {
-		type: Number,
-		required: true,
-	},
 	
 	situacionCuota: {
 		type: Boolean,
 		required: true,
 	},
+
+	matematicas: {
+		type: String,
+		required: true,
+	},
+
+	lenguaLiteratura: {
+	type: String,
+	required: true,},
+
+	biologia: {
+	type: String,
+	required: true,},
+
+	fisica: {
+	type: String,
+	required: true,},
+
+	quimica: {
+	type: String,
+	required: true,},
+
+	economia: {
+	type: String,
+	required: true,},
+
+	geografia: {
+	type: String,
+	required: true,},
+
+	historia: {
+	type: String,
+	required: true,},
+
+
+	educacionFisica: {
+	type: String,
+	required: true,},
 
 
 	

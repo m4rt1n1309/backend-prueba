@@ -5,12 +5,13 @@
  const {
 
     mostrarAdmin,
+    crearAlumno,
 
  } = require('../controllers/adminControllers');
 
  routerAdmin.post ('/datosadmin',validarJWT, mostrarAdmin);
 
-// routerAdmin.post ("/crearproducto", crearProducto);
+ routerAdmin.post ('/crearalumno',validarJWT, crearAlumno);
 
 
 

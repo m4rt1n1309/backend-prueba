@@ -1,41 +1,48 @@
 const Admin = require('../model/admin-model');
+const Alumno = require('../model/alumnos-model');
 
-// const crearProducto = async (req, res) => {
-// 	const { nombre, descripcion, precio } = req.body;
+
+ const crearAlumno = async (req, res) => {
+ 	const { nombre, apellido, curso, situacionCuota,matematicas,lenguaLiteratura,biologia,fisica,quimica,economia,geografia,historia,educacionFisica } = req.body;
 	
-// 	//validar
-// 	if (!nombre || !descripcion || !precio) {
-// 		return res.status(400).json({
-// 			msg: 'Todos los campos son obligatorios',
-// 		});
-// 	}else if(precio <= 0) {
+ 	//validar
+ 	if (!nombre || !apellido|| !curso|| !situacionCuota||!matematicas||!lenguaLiteratura||!biologia||!fisica||!quimica||!economia||!geografia||!historia||!educacionFisica) {
+ 		return res.status(400).json({
+ 			msg: 'Todos los campos son obligatorios',
+ 		});
+ 	}else if(curso < 1 || curso > 4) {
 
-//         return res.status(400).json({
-// 			msg: 'El precio debe ser mayor a cero (0) pesos',
-// 		});
-//     }
+         return res.status(400).json({
+ 			msg: 'El año que cursa debe estar entre 1° y 4°',
+ 		});
+    }else if((matematicas||lenguaLiteratura||biologia||fisica||quimica||economia||geografia||historia||educacionFisica)<0 ||(matematicas||lenguaLiteratura||biologia||fisica||quimica||economia||geografia||historia||educacionFisica) >10) {
+
+		return res.status(400).json({
+			msg: 'la nota debe ser entre los valores 0 y 10',
+		});
+	}
 	
 
-// 	try {
+ 	try {
 		
 		
-// 		const producto = new Producto(req.body);
+ 		const alumno = new Alumno(req.body);
 
 		
 
-// 		//guardamos en la base de datos
-// 		await producto.save();
+ 		//guardamos en la base de datos
+ 		await alumno.save();
 
-// 		res.status(201).json({
-// 			msg: 'Producto creado',
-// 		});
-// 	} catch (error) {
-// 		console.log(error);
-// 		res.status(500).json({
-// 			msg: 'Error en el servidor comunicarse con un administrador',
-// 		});
-// 	}
-// };
+ 		res.status(201).json({
+ 			msg: 'alumno registrado',
+ 		});
+ 	} catch (error) {
+ 		console.log(error);
+ 		res.status(500).json({
+ 			msg: 'Error en el servidor comunicarse con un administrador',
+ 		});
+ 	}
+ };
 
  const mostrarAdmin = async (req, res) => {
     
@@ -55,6 +62,6 @@ const Admin = require('../model/admin-model');
  };
 
 module.exports = {
-// 	crearProducto,
+ 	 crearAlumno,
      mostrarAdmin,
  };
