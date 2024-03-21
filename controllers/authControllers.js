@@ -82,13 +82,13 @@ const loginAdmin = async (req, res) => {
 		});
 
 		const { rol } = admin;
-		const {email} = admin;
+		
 
 		res.status(200).json({
 			msg: 'Admin Logueado',
 			rol: admin.rol,
 			token,
-			email: admin.email,
+			
 		});
 	} catch (error) {
 		console.log(error);
