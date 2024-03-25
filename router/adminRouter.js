@@ -7,6 +7,8 @@
     mostrarAdmin,
     crearAlumno,
     listaAlumnos,
+    editarAlumno,
+    eliminaralumno,
 
  } = require('../controllers/adminControllers');
 
@@ -15,6 +17,11 @@
  routerAdmin.post ('/crearalumno',validarJWT, crearAlumno);
 
  routerAdmin.get ('/listaalumnos',validarJWT, listaAlumnos);
+
+ routerAdmin.put('/editaralumno', validarJWT, editarAlumno);
+
+ routerAdmin.delete('/eliminaralumno/:id', validarJWT, eliminaralumno);
+
 
 
 
