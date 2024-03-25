@@ -13,6 +13,7 @@ app.use(cors());
 dbConnetion();
 
 app.use('/auth' , require('./router/authRouter'));
+app.use('/admin' , require('./router/adminRouter'));
 
 
 app.listen(process.env.PORT,() =>{

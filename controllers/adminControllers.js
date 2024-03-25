@@ -55,10 +55,10 @@ const Alumno = require('../model/alumnos-model');
 
  const mostrarAdmin = async (req, res) => {
     
-	const {email} = req.body;
+	
 	
      try {
- 		const admin = await Admin.findOne({email});
+ 		const admin = await Admin.findById(req.body._id);
  		res.status(200).json({
  			msg: 'admin encontrado',
  			admin,
