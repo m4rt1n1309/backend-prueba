@@ -2,7 +2,7 @@ const Admin = require('../model/admin-model');
 const Alumno = require('../model/alumnos-model');
 
 
- const crearAlumno = async (req, res) => {
+const crearAlumno = async (req, res) => {
  	const { nombre, apellido, curso, situacionCuota,matematicas,lenguaLiteratura,biologia,fisica,quimica,economia,geografia,historia,educacionFisica } = req.body;
 	
  	//validar
@@ -42,7 +42,7 @@ const Alumno = require('../model/alumnos-model');
  			msg: 'Error en el servidor comunicarse con un administrador',
  		});
  	}
- };
+};
 
  const listaAlumnos = async (req, res) => {
 	const listaAlumnos = await Alumno.find();
@@ -68,10 +68,64 @@ const Alumno = require('../model/alumnos-model');
  			msg: 'Por favor contactarse con el administrador',
  		});
  	}
- };
+};
+
+ const editarAlumno = async (req, res) => {
+	try {
+		const alumno = await Alumno.findById(req.body._id);
+
+		if (!alumno) {
+			return res.status(400).json({
+				msg: 'no existe un alumno con este ID',
+			});
+		}
+
+		await Alumno.findByIdAndUpdate(req.body._id, req.body);
+		res.json({
+			msg: 'alumno editado',
+		});
+	} catch (error) {
+		res.status(500).json({
+			msg: 'Por favor comunicarse con el administrador',
+		});
+		console.log(error);
+	}
+	
+};
+
+
+const eliminaralumno = async (req, res) => {
+	try {
+		const alumno = await Alumno.findById(req.params.id);
+
+		if (alumno == undefined) {
+			return res.status(400).json({
+				msg: 'No existe el alumno',
+			});
+		}
+
+		await Alumno.findByIdAndDelete(req.params.id);
+
+		res.status(200).json({
+			msg: 'alumno Eliminado',
+		});
+	} catch (error) {
+		res.status(500).json({
+			msg: 'Por favor comunicarse con el administrador',
+		});
+		console.log(error);
+	}
+};
+
+
+
 
 module.exports = {
  	 crearAlumno,
      mostrarAdmin,
 	 listaAlumnos,
+	 editarAlumno,
+	 eliminaralumno,
+
  };
+
