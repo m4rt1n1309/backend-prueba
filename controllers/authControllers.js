@@ -10,12 +10,11 @@ const crearAdmin = async (req, res) => {
 		return res.status(400).json({
 			msg: 'Todos los campos son obligatorios',
 		});
-	}
-	// } else if (password < 5) {
-	// 	return res.status(400).json({
-	// 		msg: ' la contraseña debe ser mayor a 5 caracteres',
-	// 	});
-	// }
+	} else if (password < 5) {
+	 	return res.status(400).json({
+	 		msg: ' la contraseña debe ser mayor a 5 caracteres',
+	 	});
+	 }
 
 	try {
 		//analizamos si el correo ingresado no esta registrado

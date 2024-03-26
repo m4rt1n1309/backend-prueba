@@ -3,24 +3,19 @@ const Alumno = require('../model/alumnos-model');
 
 
 const crearAlumno = async (req, res) => {
- 	const { nombre, apellido, curso, situacionCuota,matematicas,lenguaLiteratura,biologia,fisica,quimica,economia,geografia,historia,educacionFisica } = req.body;
+ 	const { nombre, apellido, curso, situacionCuota } = req.body;
 	
  	//validar
- 	if (!nombre || !apellido|| !curso|| !situacionCuota||!matematicas||!lenguaLiteratura||!biologia||!fisica||!quimica||!economia||!geografia||!historia||!educacionFisica) {
+ 	if (!nombre || !apellido|| !curso|| !situacionCuota) {
  		return res.status(400).json({
- 			msg: 'Todos los campos son obligatorios',
+ 			msg: 'estos campos son obligatorios',
  		});
  	}else if(curso < 1 || curso > 4) {
 
          return res.status(400).json({
  			msg: 'El año que cursa debe estar entre 1° y 4°',
  		});
-    }else if((matematicas||lenguaLiteratura||biologia||fisica||quimica||economia||geografia||historia||educacionFisica)<0 ||(matematicas||lenguaLiteratura||biologia||fisica||quimica||economia||geografia||historia||educacionFisica) >10) {
-
-		return res.status(400).json({
-			msg: 'la nota debe ser entre los valores 0 y 10',
-		});
-	}
+    }
 	
 
  	try {
@@ -95,6 +90,8 @@ const crearAlumno = async (req, res) => {
 
 
 const eliminaralumno = async (req, res) => {
+
+	
 	try {
 		const alumno = await Alumno.findById(req.params.id);
 
@@ -117,6 +114,45 @@ const eliminaralumno = async (req, res) => {
 	}
 };
 
+const cargarNotas  = async (req, res) => {
+	const {matematicas,lenguaLiteratura,biologia,fisica,quimica,economia,geografia,historia,educacionFisica } = req.body;
+
+	if (!matematicas||!lenguaLiteratura||!biologia||!fisica||!quimica||!economia||!geografia||!historia||!educacionFisica) {
+		return res.status(400).json({
+			msg: 'estos campos son obligatorios',
+		});
+	}
+
+	if((matematicas||lenguaLiteratura||biologia||fisica||quimica||economia||geografia||historia||educacionFisica)<0 ||(matematicas||lenguaLiteratura||biologia||fisica||quimica||economia||geografia||historia||educacionFisica) >10) {
+
+		return res.status(400).json({
+			msg: 'la nota debe ser entre los valores 0 y 10',
+		});
+	}
+
+	try {
+		const alumno = await Alumno.findById(req.body._id);
+
+		if (!alumno) {
+			return res.status(400).json({
+				msg: 'no existe un alumno con este ID',
+			});
+		}
+
+		await Alumno.findByIdAndUpdate(req.body._id, req.body);
+		res.json({
+			msg: 'notas cargadas',
+		});
+	} catch (error) {
+		res.status(500).json({
+			msg: 'Por favor comunicarse con el administrador',
+		});
+		console.log(error);
+	}
+	
+};
+
+
 
 
 
@@ -126,5 +162,6 @@ module.exports = {
 	 listaAlumnos,
 	 editarAlumno,
 	 eliminaralumno,
+	 cargarNotas,
 
  };

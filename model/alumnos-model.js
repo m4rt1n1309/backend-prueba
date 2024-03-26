@@ -25,40 +25,49 @@ const alumnoSchema = Schema({
 	matematicas: {
 		type: String,
 		required: true,
+		default: '0',
 	},
 
 	lenguaLiteratura: {
 	type: String,
-	required: true,},
+	default: '0',
+	},
 
 	biologia: {
 	type: String,
-	required: true,},
+	default: '0',
+	},
 
 	fisica: {
 	type: String,
-	required: true,},
+	default: '0',
+	},
 
 	quimica: {
 	type: String,
-	required: true,},
+	default: '0',
+	},
 
 	economia: {
 	type: String,
-	required: true,},
+	default: '0',
+	},
 
 	geografia: {
 	type: String,
-	required: true,},
+	default: '0',
+	},
 
 	historia: {
 	type: String,
-	required: true,},
+	default: '0',
+	},
 
 
 	educacionFisica: {
 	type: String,
-	required: true,},
+	default: '0',
+	},
 
 
 	
