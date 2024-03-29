@@ -9,6 +9,8 @@
     listaAlumnos,
     editarAlumno,
     eliminaralumno,
+    cargarNotas,
+    listaAdmin,
 
  } = require('../controllers/adminControllers');
 
@@ -19,6 +21,10 @@
  routerAdmin.get ('/listaalumnos',validarJWT, listaAlumnos);
 
  routerAdmin.put('/editaralumno', validarJWT, editarAlumno);
+
+ routerAdmin.put('/cargarnotas', validarJWT, cargarNotas);
+
+ routerAdmin.get('/listaadmins', validarJWT, listaAdmin);
 
  routerAdmin.delete('/eliminaralumno/:id', validarJWT, eliminaralumno);
 
