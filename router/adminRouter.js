@@ -11,6 +11,7 @@
     eliminaralumno,
     cargarNotas,
     listaAdmin,
+    eliminaradmin,
 
  } = require('../controllers/adminControllers');
 
@@ -27,6 +28,8 @@
  routerAdmin.get('/listaadmins', validarJWT, listaAdmin);
 
  routerAdmin.delete('/eliminaralumno/:id', validarJWT, eliminaralumno);
+
+ routerAdmin.delete('/eliminaradmin/:id', validarJWT, eliminaradmin);
 
 
 

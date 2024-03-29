@@ -57,6 +57,30 @@ const listaAdmin = async (req, res) => {
 	});
 };
 
+const eliminaradmin = async (req, res) => {
+	
+	try {
+		const admin = await Admin.findById(req.params.id);
+
+		if (admin == undefined) {
+			return res.status(400).json({
+				msg: 'No existe el administrador',
+			});
+		}
+
+		await Admin.findByIdAndDelete(req.params.id);
+
+		res.status(200).json({
+			msg: 'Administrador Eliminado',
+		});
+	} catch (error) {
+		res.status(500).json({
+			msg: 'Por favor comunicarse con el administrador',
+		});
+		console.log(error);
+	}
+};
+
  const mostrarAdmin = async (req, res) => {
     
 	
@@ -173,5 +197,6 @@ module.exports = {
 	 eliminaralumno,
 	 cargarNotas,
 	 listaAdmin,
+	 eliminaradmin,
  };
 
